@@ -467,3 +467,38 @@ php artisan route:list
 # Open interactive PHP shell
 php artisan tinker
 ```
+
+---
+
+## Possible Future Enhancements
+
+The following features are not yet implemented but would be natural extensions to this system:
+
+### Passenger Experience
+- **Online Payment Integration** – Integrate a payment gateway (PayHere, Stripe, or PayPal) to allow passengers to pay for bookings online and receive e-tickets
+- **QR Code Tickets** – Generate a unique QR code per booking that bus conductors can scan to verify passengers on boarding
+- **SMS Notifications** – Send booking confirmations and delay alerts via SMS (using Twilio or Dialog Axiata API) in addition to email
+- **Booking History with Filters** – Allow passengers to filter their booking history by date range, route, or status
+- **Favourite Routes** – Let users save frequently travelled routes for one-click searching
+- **Bus Reviews and Ratings** – Allow passengers to rate and review bus services after travel
+
+### Admin & Operations
+- **Revenue Reports** – Generate daily, weekly, and monthly revenue reports with charts and CSV export
+- **Conductor / Driver Role** – Add a third user role for drivers/conductors who can only view their assigned schedule and update GPS, without access to the full admin panel
+- **Route Management** – Manage available cities and routes from the admin panel instead of hardcoded dropdown lists
+- **Recurring Schedules** – Set up bus schedules that repeat daily or weekly without creating each entry manually
+- **Bulk Delay Notification** – Notify all passengers across multiple schedules at once (e.g. for weather disruptions)
+- **Passenger Manifest** – Generate a printable passenger list for each departure
+
+### GPS & Tracking
+- **GPS Location History** – Store and replay the full route a bus took during a journey on the tracking map
+- **Geofencing Alerts** – Automatically notify passengers when the bus is within a certain distance of their stop
+- **Estimated Time of Arrival (ETA)** – Calculate and display ETA to the destination based on current GPS position and average speed
+- **Driver Mobile App** – A dedicated mobile app (Flutter or React Native) that automatically streams the driver's GPS coordinates to the system without manual input
+- **Google Maps Integration** – Replace OpenStreetMap tiles with Google Maps for more detailed Sri Lanka road coverage
+
+### Security & Performance
+- **Two-Factor Authentication (2FA)** – Add OTP verification on login for enhanced security
+- **Rate Limiting on Booking** – Prevent users from submitting multiple booking requests simultaneously
+- **Admin Audit Log** – Track all admin actions (who added/edited/deleted what and when)
+- **Automated Database Backups** – Schedule nightly database backups to cloud storage

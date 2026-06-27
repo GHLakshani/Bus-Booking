@@ -1,6 +1,7 @@
 *.log
 *.zip
 .DS_Store
+.claude/
 .env
 .env.backup
 .env.production
