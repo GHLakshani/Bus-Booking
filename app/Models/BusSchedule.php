@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BusSchedule extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'schedule_id', 'route_from', 'route_to', 'departure_time',
         'bus_model', 'depot_name', 'fare', 'available_seats',
