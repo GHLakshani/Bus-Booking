@@ -6,8 +6,10 @@ use App\Models\Booking;
 use App\Models\BusSchedule;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -154,5 +156,34 @@ class AdminController extends Controller
         }
 
         return back()->with('success', "Delay updated. Notifications sent to {$sent} passenger(s).");
+    }
+
+    // ── API Token Management ───────────────────────────────────
+
+    public function apiTokens()
+    {
+        $tokens = DB::table('api_tokens')->orderByDesc('created_at')->get();
+        return view('admin.api-tokens', compact('tokens'));
+    }
+
+    public function generateApiToken(Request $request)
+    {
+        $request->validate(['label' => 'required|string|max:100']);
+
+        $token = Str::random(64);
+        DB::table('api_tokens')->insert([
+            'token'      => $token,
+            'label'      => $request->label,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return back()->with('new_token', $token)->with('success', 'API token generated.');
+    }
+
+    public function deleteApiToken(int $id)
+    {
+        DB::table('api_tokens')->where('id', $id)->delete();
+        return back()->with('success', 'API token revoked.');
     }
 }

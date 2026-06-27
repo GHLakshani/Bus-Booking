@@ -50,4 +50,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/notify-delay', [AdminController::class, 'notifyDelaySubmit'])->name('notify.submit');
     Route::get('/update-gps', [GpsController::class, 'adminGpsForm'])->name('update.gps');
     Route::post('/update-gps', [GpsController::class, 'adminGpsSubmit'])->name('gps.submit');
+    Route::get('/api-tokens', [AdminController::class, 'apiTokens'])->name('api.tokens');
+    Route::post('/api-tokens', [AdminController::class, 'generateApiToken'])->name('api.tokens.generate');
+    Route::delete('/api-tokens/{id}', [AdminController::class, 'deleteApiToken'])->name('api.tokens.delete');
 });

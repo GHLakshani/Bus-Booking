@@ -111,6 +111,11 @@
           Update GPS
         </div>
       </a>
+      <a href="{{ route('admin.api.tokens') }}">
+        <div class="left_side_btn_div {{ request()->routeIs('admin.api.tokens') ? 'left_side_btn_div_active' : '' }}">
+          GPS API Tokens
+        </div>
+      </a>
     </div>
 
     <!-- Main Content -->

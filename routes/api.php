@@ -3,6 +3,8 @@
 use App\Http\Controllers\GpsController;
 use Illuminate\Support\Facades\Route;
 
-// GPS tracking API endpoints (used by GPS devices and the frontend polling)
-Route::post('/gps/update', [GpsController::class, 'updateLocation']);
+// GPS write endpoint — requires X-GPS-Token header (for GPS devices / drivers)
+Route::middleware('api.token')->post('/gps/update', [GpsController::class, 'updateLocation']);
+
+// GPS read endpoint — open to all (polled by passenger tracking page)
 Route::get('/gps/{busSchedule}', [GpsController::class, 'getLocation']);
